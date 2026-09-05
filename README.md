@@ -16,8 +16,8 @@ Your IBM Cloud API key was shared in chat and is compromised. Please:
 ### 2. Update Credentials
 Edit `backend/config.env`:
 ```
-WATSONX_API_KEY=your_NEW_api_key_here
-WATSONX_PROJECT_ID=9e49ef9c-7d85-4ec6-8718-2877ddfd0f3c
+WATSONX_API_KEY=your_watsonx_api_key_here
+WATSONX_PROJECT_ID=your_watsonx_project_id_here
 WATSONX_MODEL_ID=ibm/granite-4-h-small
 ```
 

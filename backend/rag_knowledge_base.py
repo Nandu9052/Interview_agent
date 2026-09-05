@@ -194,6 +194,55 @@ KNOWLEDGE_BASE = [
         "industry_context": "Fundamental distributed systems knowledge for architect and senior backend roles.",
         "tips": "PACELC is an extension of CAP that also considers latency. Mention BASE vs ACID.",
     },
+    # ─── BACKEND DEVELOPER ──────────────────────────────────────────────────
+    {
+        "id": "be_001", "role": "Backend Developer", "category": "Databases",
+        "difficulty": "Medium", "type": "technical",
+        "question": "Explain database indexing (B-Trees vs Hash Indexes). When would an index degrade performance?",
+        "model_answer": "B-Tree indexes support range queries, sorting, and equality searches in O(log n). Hash indexes only support exact match equality lookups in O(1). Indexes degrade write (INSERT/UPDATE/DELETE) performance due to index maintenance overhead and consume extra disk/memory.",
+        "keywords": ["database", "index", "b-tree", "hash index", "query optimization", "performance", "sql"],
+        "industry_context": "Core backend database performance question asked across all tech companies.",
+        "tips": "Mention clustered vs non-clustered indexes and composite index column ordering rules.",
+    },
+    {
+        "id": "be_002", "role": "Backend Developer", "category": "Architecture",
+        "difficulty": "Hard", "type": "technical",
+        "question": "How do you handle distributed transactions across microservices? Explain the Saga Pattern.",
+        "model_answer": "Distributed transactions avoid 2-phase commit (2PC) bottlenecks using Saga: a sequence of local transactions where each step publishes an event/message. If a step fails, compensating transactions run in reverse to roll back state. Implemented via Orchestration or Choreography.",
+        "keywords": ["microservices", "saga pattern", "distributed transactions", "event-driven", "compensation", "kafka"],
+        "industry_context": "Critical system design topic for modern microservices architectures.",
+        "tips": "Compare choreography (decentralized events) vs orchestration (central coordinator). Discuss idempotency.",
+    },
+    # ─── MOBILE DEVELOPER ──────────────────────────────────────────────────
+    {
+        "id": "mob_001", "role": "Mobile Developer", "category": "Architecture",
+        "difficulty": "Medium", "type": "technical",
+        "question": "Compare MVVM, MVP, and MVI architectures in mobile app development. Which do you prefer and why?",
+        "model_answer": "MVVM separates UI from business logic using data binding/observables (StateFlow/LiveData/Combine). MVP uses a Presenter with 1:1 view coupling. MVI enforces unidirectional data flow with immutable UI state. MVVM/MVI are preferred for testability and lifecycle resilience.",
+        "keywords": ["mvvm", "mvi", "mvp", "mobile", "state management", "android", "ios", "architecture"],
+        "industry_context": "Standard architectural assessment for iOS and Android engineering roles.",
+        "tips": "Discuss handling configuration changes (screen rotation) and state preservation on memory pressure.",
+    },
+    # ─── QA ENGINEER ───────────────────────────────────────────────────────
+    {
+        "id": "qa_001", "role": "QA Engineer", "category": "Testing",
+        "difficulty": "Medium", "type": "technical",
+        "question": "How do you design a comprehensive test strategy for a mission-critical web application?",
+        "model_answer": "Testing Pyramid: unit tests (highest volume, fast), integration tests (API & database interactions), and end-to-end/UI tests (Cypress/Playwright for critical user journeys). Include performance testing (k6/JMeter), security vulnerability scanning, CI/CD automation, and exploratory testing.",
+        "keywords": ["testing pyramid", "e2e", "integration testing", "cypress", "playwright", "test automation", "qa"],
+        "industry_context": "Essential foundation question for QA Automation and SDET positions.",
+        "tips": "Emphasize shifting left in the SDLC and automated regression gates in CI pipelines.",
+    },
+    # ─── SECURITY ENGINEER ─────────────────────────────────────────────────
+    {
+        "id": "sec_001", "role": "Security Engineer", "category": "Security",
+        "difficulty": "Hard", "type": "technical",
+        "question": "Explain the OWASP Top 10 vulnerabilities and how you mitigate SQL Injection and Broken Object Level Authorization (BOLA).",
+        "model_answer": "SQL Injection: mitigate with parameterized queries / prepared statements and ORMs. BOLA (IDOR): mitigate by enforcing user context authorization checks at the data layer for every resource ID, rather than relying solely on client-supplied parameters or frontend obfuscation.",
+        "keywords": ["owasp", "sql injection", "bola", "idor", "authentication", "authorization", "security", "csrf", "xss"],
+        "industry_context": "Fundamental application security question tested at all security engineering interviews.",
+        "tips": "Discuss defense-in-depth, principle of least privilege, and automated SAST/DAST tooling in CI/CD.",
+    },
 ]
 
 # Role-to-industry expectations map
@@ -205,6 +254,14 @@ INDUSTRY_EXPECTATIONS = {
         "prep_resources": ["LeetCode", "System Design Primer", "Clean Code (book)", "DDIA (book)"],
         "avg_interview_duration": "4-6 hours total across rounds",
         "success_tips": "Focus on thinking out loud, edge cases, and iterative refinement rather than rushing to code.",
+    },
+    "Backend Developer": {
+        "key_skills": ["API Design (REST/gRPC)", "SQL & NoSQL Databases", "Distributed Systems", "Caching (Redis)", "Concurrency & Queues"],
+        "typical_rounds": ["Coding Screen", "Backend API Design", "System Architecture & Data Modeling", "Behavioral"],
+        "top_companies": ["Uber", "Stripe", "DoorDash", "Coinbase", "Airbnb"],
+        "prep_resources": ["Designing Data-Intensive Applications", "System Design Primer", "High Scalability Blog"],
+        "avg_interview_duration": "4-5 hours total",
+        "success_tips": "Demonstrate clear understanding of database indexes, transaction isolation levels, and caching strategies.",
     },
     "Data Scientist": {
         "key_skills": ["Statistics & Probability", "Machine Learning", "Python/R", "SQL", "Data Storytelling"],
@@ -261,6 +318,30 @@ INDUSTRY_EXPECTATIONS = {
         "prep_resources": ["AWS Well-Architected Framework", "Cloud Architecture Patterns", "GCP cert prep"],
         "avg_interview_duration": "4-6 hours",
         "success_tips": "Always consider the 5 pillars: operational excellence, security, reliability, performance efficiency, cost optimization.",
+    },
+    "Mobile Developer": {
+        "key_skills": ["Swift/iOS or Kotlin/Android", "React Native/Flutter", "UI/UX & Gestures", "Offline Storage & Sync", "App Performance"],
+        "typical_rounds": ["Coding Screen", "App Component Implementation", "Mobile Architecture", "Behavioral"],
+        "top_companies": ["Spotify", "Uber", "Instagram", "Snap", "Pinterest"],
+        "prep_resources": ["Apple Developer Documentation", "Android Developers Guide", "Ray Wenderlich"],
+        "avg_interview_duration": "3-5 hours",
+        "success_tips": "Demonstrate mastery of mobile lifecycle, memory management, and background tasks.",
+    },
+    "QA Engineer": {
+        "key_skills": ["Test Automation (Selenium/Playwright/Cypress)", "API Testing (Postman)", "Performance Testing (JMeter)", "CI/CD Integration", "Test Planning"],
+        "typical_rounds": ["Test Case Design", "Automation Coding", "API/Performance Testing Case", "Behavioral"],
+        "top_companies": ["Salesforce", "Atlassian", "Adobe", "Microsoft", "Workday"],
+        "prep_resources": ["Ministry of Testing", "Test Automation University", "Guru99"],
+        "avg_interview_duration": "3-4 hours",
+        "success_tips": "Structure test cases with boundary value analysis and equivalence partitioning. Focus on test reliability.",
+    },
+    "Security Engineer": {
+        "key_skills": ["AppSec (OWASP Top 10)", "Threat Modeling", "Cloud Security", "Cryptography", "Penetration Testing"],
+        "typical_rounds": ["Security Code Review", "Threat Modeling Exercise", "Network/Cloud Security", "Behavioral"],
+        "top_companies": ["CrowdStrike", "Palo Alto Networks", "Cloudflare", "Google", "Mandiant"],
+        "prep_resources": ["OWASP Guide", "PortSwigger Web Security Academy", "Hacking: The Art of Exploitation"],
+        "avg_interview_duration": "4-6 hours",
+        "success_tips": "Walk through realistic threat models (STRIDE) and articulate defense-in-depth mitigations.",
     },
 }
 
