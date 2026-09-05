@@ -1,0 +1,43 @@
+﻿# --- Secrets & environment files ---------------------------------------------
+backend/config.env
+*.env
+.env
+.env.*
+!*.env.example
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+build/
+*.egg
+venv/
+.venv/
+env/
+*.log
+
+# --- Database ----------------------------------------------------------------
+*.db
+*.sqlite
+*.sqlite3
+backend/instance/
+
+# --- Node / Frontend ---------------------------------------------------------
+frontend/node_modules/
+frontend/dist/
+node_modules/
+
+# --- Vite / Build cache ------------------------------------------------------
+*.local
+
+# --- OS & Editor -------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# --- IBM Bob / AI IDE --------------------------------------------------------
+.bob/

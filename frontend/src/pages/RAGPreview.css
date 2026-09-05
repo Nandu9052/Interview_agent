@@ -1,0 +1,161 @@
+.rag-filters {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rag-filter-group { display: flex; align-items: center; gap: 16px; }
+.rag-filter-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  width: 64px;
+}
+.rag-filter-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.rag-chip {
+  padding: 5px 14px;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+.rag-chip:hover { border-color: rgba(108,99,255,0.4); color: var(--text-primary); }
+.rag-chip.active { border-color: var(--accent); background: var(--accent-subtle); color: var(--accent); }
+.rag-chip-easy.active { border-color: var(--success); background: var(--success-subtle); color: var(--success); }
+.rag-chip-medium.active { border-color: var(--warning); background: var(--warning-subtle); color: var(--warning); }
+.rag-chip-hard.active { border-color: var(--danger); background: var(--danger-subtle); color: var(--danger); }
+
+.rag-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Questions */
+.rag-question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rag-question-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.rag-question-card:hover { border-color: rgba(108,99,255,0.3); }
+.rag-question-card.expanded { border-color: var(--accent); }
+.rag-q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.rag-q-number {
+  font-size: 1.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.rag-q-content { flex: 1; }
+.rag-q-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.rag-q-text { font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--text-primary); }
+
+.rag-q-expanded {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.rag-q-section-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.rag-q-model-answer {
+  background: var(--success-subtle);
+  border-left: 3px solid var(--success);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 14px;
+}
+.rag-q-model-answer p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.rag-q-tip {
+  background: var(--accent-subtle);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 14px;
+}
+.rag-q-tip p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+/* Sidebar */
+.rag-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 24px;
+}
+.rag-industry-card { padding: 20px; }
+
+.rag-industry-section { margin-bottom: 16px; }
+.rag-industry-section:last-child { margin-bottom: 0; }
+.rag-industry-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.rag-round-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+.rag-round-num {
+  width: 20px; height: 20px;
+  background: var(--accent-subtle);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .rag-layout { grid-template-columns: 1fr; }
+  .rag-sidebar { position: static; }
+}

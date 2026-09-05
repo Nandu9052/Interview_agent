@@ -1,0 +1,301 @@
+/* The interview room is full-screen, no sidebar scroll */
+.interview-room {
+  position: fixed;
+  top: 0; left: var(--sidebar-width); right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  z-index: 10;
+}
+
+/* ─── Header ─────────────────────────────────────── */
+.room-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  gap: 24px;
+  flex-shrink: 0;
+}
+.room-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.room-ai-avatar {
+  width: 38px; height: 38px;
+  background: var(--accent-subtle);
+  border: 1.5px solid rgba(108, 99, 255, 0.3);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: glow 3s ease-in-out infinite;
+}
+.room-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.room-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.room-header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.room-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.room-progress-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.room-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.room-timer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Chat feed ─────────────────────────────────── */
+.room-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scroll-behavior: smooth;
+}
+
+.chat-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+  max-width: 840px;
+}
+.chat-msg-ai { align-self: flex-start; }
+.chat-msg-user { align-self: flex-end; flex-direction: row-reverse; }
+.chat-msg-user .chat-bubble { max-width: 600px; }
+
+.chat-avatar {
+  width: 32px; height: 32px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+.chat-avatar-ai {
+  background: var(--accent-subtle);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  color: var(--accent);
+}
+.chat-avatar-user {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.chat-bubble {
+  padding: 14px 18px;
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 700px;
+}
+.chat-bubble p { margin: 0; }
+.chat-bubble-ai {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top-left-radius: 4px;
+  color: var(--text-primary);
+}
+.chat-bubble-user {
+  background: var(--accent-subtle);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  border-top-right-radius: 4px;
+  color: var(--text-primary);
+}
+
+.chat-question-meta {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+/* Evaluation block inside bubble */
+.chat-evaluation {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-eval-score {
+  display: flex;
+  align-items: center;
+}
+.score-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.score-bar-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  min-width: 36px;
+}
+.chat-eval-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.chat-eval-section-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  color: var(--text-secondary);
+}
+.success-text { color: var(--success) !important; }
+.warning-text { color: var(--warning) !important; }
+.chat-eval-point {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding-left: 4px;
+  line-height: 1.5;
+}
+.chat-eval-sample {
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent);
+}
+.chat-eval-sample p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 0;
+}
+.typing-indicator span {
+  width: 7px; height: 7px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ─── Input area ─────────────────────────────────── */
+.room-input-area {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+  padding: 16px 24px;
+}
+
+.room-answer-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 840px;
+}
+.room-textarea {
+  min-height: 80px;
+  max-height: 180px;
+  resize: none;
+  line-height: 1.6;
+}
+.room-input-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.room-hint {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+.room-mic-btn {
+  border: 1px solid var(--border) !important;
+}
+.room-mic-btn.listening {
+  background: var(--danger-subtle) !important;
+  color: var(--danger) !important;
+  border-color: var(--danger) !important;
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+.room-next-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  max-width: 840px;
+}
+.room-next-info {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+
+.room-processing {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+@keyframes spin-anim { to { transform: rotate(360deg); } }
+.spin-icon { animation: spin-anim 0.8s linear infinite; }
+
+@media (max-width: 768px) {
+  .interview-room { left: 0; }
+  .room-header-center { display: none; }
+}
