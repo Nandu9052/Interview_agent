@@ -103,9 +103,21 @@ Open: **http://localhost:3000**
 
 ---
 
+## 🌐 Production Cloud Deployment
+
+The repository includes ready-to-use configurations for one-click and containerized cloud deployment:
+- **`render.yaml`**: One-click Blueprint deployment on Render (Free tier)
+- **`Dockerfile`**: Multi-stage production container build (Node 20 + Python 3.11 + Gunicorn)
+- **`Procfile`**: PaaS process definition (Railway, Render, Heroku)
+- **`docker-compose.yml`**: Local and VM container orchestration
+
+👉 **See the comprehensive [Deployment Guide](DEPLOYMENT.md) for step-by-step instructions on Render, Railway, Google Cloud Run, IBM Cloud Code Engine, and Linux VPS.**
+
+---
+
 ## 🛡️ Security Notes
 
-- **Never commit `config.env`** — it contains your API key
-- The `.gitignore` and `.bobignore` files protect `.env` files
-- Use `config.env` (not `.env`) as the credentials file for this project
-- Rotate your API key immediately if it was ever shared in chat
+- **Never commit credentials** (`config.env`, `.env`, API keys, or tokens).
+- The `.gitignore` and `.dockerignore` files are configured to strictly protect secrets and local database files.
+- When deploying to any cloud platform, always inject `WATSONX_API_KEY`, `WATSONX_PROJECT_ID`, and `JWT_SECRET_KEY` through the platform's Environment Variables or Secrets manager.
+

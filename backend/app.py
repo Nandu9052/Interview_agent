@@ -19,13 +19,25 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent / "config.env")
 
 # ─── App setup ───────────────────────────────────────────────────────────────
-FRONTEND_DIST = Path(__file__).parent.parent / "frontend" / "dist"
+FRONTEND_DIST = (
+    Path(os.getenv("FRONTEND_DIST", ""))
+    if os.getenv("FRONTEND_DIST") and Path(os.getenv("FRONTEND_DIST")).exists()
+    else (
+        Path(__file__).parent.parent / "frontend" / "dist"
+        if (Path(__file__).parent.parent / "frontend" / "dist").exists()
+        else Path(__file__).parent / "dist"
+    )
+)
 
 app = Flask(__name__, static_folder=None)
 CORS(app, origins=["http://localhost:3000", "http://localhost:5173", "http://localhost:5000", "*"])
 
+db_uri = os.getenv("DATABASE_URL", "sqlite:///interview_trainer.db")
+if db_uri.startswith("postgres://"):
+    db_uri = db_uri.replace("postgres://", "postgresql://", 1)
+
 app.config.update(
-    SQLALCHEMY_DATABASE_URI="sqlite:///interview_trainer.db",
+    SQLALCHEMY_DATABASE_URI=db_uri,
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
     JWT_SECRET_KEY=os.getenv("JWT_SECRET_KEY", "dev-secret-key-change-in-production"),
     JWT_ACCESS_TOKEN_EXPIRES=timedelta(hours=24),
@@ -639,12 +651,16 @@ def serve_spa(path):
     }), 200
 
 
+# ─── Database Initialization ─────────────────────────────────────────────────
+with app.app_context():
+    db.create_all()
+
 # ─── Bootstrap ────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-        print("Database initialized")
-        print(f"Frontend dist: {'found' if FRONTEND_DIST.exists() else 'not built yet — run: cd frontend && npm run build'}")
-        print("Server starting on http://localhost:5000")
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    port = int(os.getenv("PORT", 5000))
+    debug_mode = os.getenv("FLASK_ENV", "").lower() == "development"
+    print(f"Database initialized")
+    print(f"Frontend dist: {'found' if FRONTEND_DIST.exists() else 'not built yet — run: cd frontend && npm run build'}")
+    print(f"Server starting on http://0.0.0.0:{port}")
+    app.run(debug=debug_mode, host="0.0.0.0", port=port)

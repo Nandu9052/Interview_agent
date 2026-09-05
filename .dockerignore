@@ -1,0 +1,33 @@
+# Git & IDE
+.git
+.gitignore
+.vscode
+.idea
+
+# Node
+frontend/node_modules
+frontend/dist
+
+# Python
+backend/__pycache__
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/*.db
+backend/.pytest_cache
+*.egg-info
+.venv
+venv
+ENV
+
+# Secrets & Configs
+*.env
+*.env.local
+*.env.production
+backend/config.env
+backend/config.env.*
+!backend/config.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
