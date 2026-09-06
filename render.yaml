@@ -1,17 +1,12 @@
 services:
   - type: web
     name: interview-trainer-ai
-    env: python
+    env: docker
     region: oregon
     plan: free
-    buildCommand: "cd frontend && npm install && npm run build && cd ../backend && pip install -r requirements.txt"
-    startCommand: "gunicorn --chdir backend app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.9
-      - key: NODE_VERSION
-        value: 20.12.2
       - key: FLASK_ENV
         value: production
       - key: WATSONX_API_KEY
