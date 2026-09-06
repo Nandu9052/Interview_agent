@@ -33,7 +33,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install backend Python dependencies
 COPY backend/requirements.txt ./backend/
-RUN pip install --no-cache-dir -r backend/requirements.txt
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir -r backend/requirements.txt
 
 # Copy backend application code
 COPY backend/ ./backend/
